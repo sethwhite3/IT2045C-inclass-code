@@ -23,6 +23,10 @@ public class Car {
         this.speed = 0.0;
     }
 
+    public Double getSpeed() {
+        return speed;
+    }
+
     public String getMake() {
         return make;
     }
@@ -56,10 +60,30 @@ public class Car {
     }
 
     public void move(double speed) {
-        this.speed = speed;
+        while (this.speed < speed) {
+            //accelerate
+            accelerate();
+        }
+
+        while (this.speed > speed) {
+            //decelerate
+            decelerate();
+        }
+    }
+
+    private void decelerate() {
+        this.speed -= 1;
+    }
+
+    private void accelerate() {
+        this.speed += 1;
     }
 
     public void stop() {
         this.speed = 0.0;
+    }
+
+    public static double convertMphToKmh(double mph) {
+        return mph * 1.60934;
     }
 }
